@@ -16,7 +16,7 @@ A modern, responsive resume website built with HTML, CSS, and JavaScript. This w
 
 ## 🚀 Live Demo
 
-Visit the live website: [Your Website URL Here](https://yourusername.github.io/portfolio)
+Visit the live website: [Your Website URL Here](https://darshan-204.github.io/Portfolio/)
 
 ## 📱 Sections
 
