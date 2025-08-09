@@ -2,7 +2,6 @@
 
 A modern, responsive resume website built with HTML, CSS, and JavaScript. This website showcases professional experience, skills, education, and projects in an elegant and mobile-friendly format.
 
-![Resume Website Preview](https://via.placeholder.com/800x400/6366f1/ffffff?text=Resume+Website+Preview)
 
 ## ✨ Features
 
