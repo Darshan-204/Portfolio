@@ -1,0 +1,43 @@
+ Executive Summary
+ Motivated Computer Science Engineering student passionate about solving complex problems through innovative
+ solutions. Skilled in MERN stack, algorithms, and data structures, with experience in building full-stack
+ applications and strong problem-solving abilities.
+ Education
+ RNS Institute Of Technology, Bachelor of Engineering in Computer Science and Engineering
+ • CGPA: 9.18/10
+ 2022– 2026
+ • Relevant Coursework: Data Structures, Algorithms, Database Management Systems, Operating Systems,
+ Software Engineering
+ Projects
+ EcoShop– E-Commerce Platform
+ GitHub Link
+ • Built an e-commerce platform with login-based product purchase and selling features.
+ • Used bcrypt for secure password storage and implemented intuitive UI with React.js and Tailwind CSS.
+ • Tech: React.js, Node.js, Express.js, MongoDB, Tailwind CSS.
+ ChatBuddy– Chat and Video Interaction App
+ • Developed real-time messaging and video interaction with WebSocket.
+ • Implemented a clean and user-friendly interface for text, image, and video sharing.
+ • Tech: React.js, Node.js, Express.js, MongoDB, Tailwind CSS, WebSocket.
+ Krishi-Sethu– Data-Driven Crop Recommendation System
+ • Suggested ideal crops based on market demand and environmental factors.
+ • Integrated live crop price updates and government scheme alerts for farmers.
+ • Tech: React.js, Node.js, Express.js, MongoDB, Tailwind CSS, Python, ML.
+ Experience
+ GitHub Link
+ GitHub Link
+ Intern– Sasken Technologies Ltd.
+ Smart Traffic Light System Simulator
+ May 2025– Jul 2025
+ Bengaluru, Karnataka
+ • Designed and implemented a Smart Traffic Light Simulator in C++ with priority-based vehicle handling.
+ • Integrated multithreading, priority queues, and sensor simulation to manage real-time traffic conditions.
+ • Added conflict-checking logic for simultaneous green lights on non-intersecting lanes.
+ • Developed modular C++ files and tested using Google Test framework.
+ Professional Skills
+ Languages: C/C++, Basic Python, JavaScript, HTML+CSS, Java
+ Libraries: C++ STL, React.js
+ Web Dev Tools: Node.js, VS Code, Git, GitHub
+ Frameworks: React.js, Express.js, Node.js
+ Databases: MongoDB, MySQL
+ Areas of Interest: Web Development, Machine Learning, Software Engineering, Database Systems
+ Soft Skills: Problem Solving, Self-learning, Adaptability, Communication, Teamwor

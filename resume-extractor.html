@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .section h3 {
+            color: #6366f1;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .experience-item, .education-item, .project-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        button {
+            background-color: #6366f1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #4f46e5;
+        }
+        .generate-btn {
+            background-color: #10b981;
+            font-size: 16px;
+            padding: 15px 30px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .output {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>📄 Resume Information Extractor</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">
+            Fill in your information from your Resume.pdf to update your website automatically
+        </p>
+
+        <form id="resumeForm">
+            <!-- Personal Information -->
+            <div class="section">
+                <h3>👤 Personal Information</h3>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="e.g., John Doe" required>
+                
+                <label for="title">Professional Title:</label>
+                <input type="text" id="title" placeholder="e.g., Senior Software Engineer" required>
+                
+                <label for="summary">Professional Summary:</label>
+                <textarea id="summary" placeholder="Brief 2-3 sentence summary of your experience and skills" required></textarea>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="your.email@example.com" required>
+                
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" placeholder="+1 (555) 123-4567">
+                
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="City, State, Country">
+                
+                <label for="linkedin">LinkedIn URL:</label>
+                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                
+                <label for="github">GitHub URL:</label>
+                <input type="url" id="github" placeholder="https://github.com/yourusername">
+            </div>
+
+            <!-- Experience Section -->
+            <div class="section">
+                <h3>💼 Professional Experience</h3>
+                <div id="experienceContainer">
+                    <div class="experience-item">
+                        <label>Job Title:</label>
+                        <input type="text" name="jobTitle[]" placeholder="e.g., Senior Software Engineer">
+                        
+                        <label>Company:</label>
+                        <input type="text" name="company[]" placeholder="e.g., Tech Company Inc.">
+                        
+                        <label>Duration:</label>
+                        <input type="text" name="duration[]" placeholder="e.g., 2023 - Present">
+                        
+                        <label>Key Achievements (one per line):</label>
+                        <textarea name="achievements[]" placeholder="• Achievement 1&#10;• Achievement 2&#10;• Achievement 3"></textarea>
+                    </div>
+                </div>
+                <button type="button" onclick="addExperience()">+ Add Experience</button>
+            </div>
+
+            <!-- Education Section -->
+            <div class="section">
+                <h3>🎓 Education</h3>
+                <div id="educationContainer">
+                    <div class="education-item">
+                        <label>Degree:</label>
+                        <input type="text" name="degree[]" placeholder="e.g., Bachelor of Science in Computer Science">
+                        
+                        <label>Institution:</label>
+                        <input type="text" name="institution[]" placeholder="e.g., University Name">
+                        
+                        <label>Year:</label>
+                        <input type="text" name="year[]" placeholder="e.g., 2020">
+                        
+                        <label>Details:</label>
+                        <textarea name="details[]" placeholder="Additional details, coursework, honors, etc."></textarea>
+                    </div>
+                </div>
+                <button type="button" onclick="addEducation()">+ Add Education</button>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="section">
+                <h3>💻 Skills</h3>
+                <label for="programmingLangs">Programming Languages (comma-separated):</label>
+                <input type="text" id="programmingLangs" placeholder="JavaScript, Python, Java, TypeScript">
+                
+                <label for="frameworks">Frameworks & Libraries (comma-separated):</label>
+                <input type="text" id="frameworks" placeholder="React, Node.js, Express, Vue.js">
+                
+                <label for="tools">Tools & Technologies (comma-separated):</label>
+                <input type="text" id="tools" placeholder="Git, Docker, AWS, MongoDB">
+                
+                <label for="other">Design & Other Skills (comma-separated):</label>
+                <input type="text" id="other" placeholder="UI/UX Design, Figma, Agile">
+            </div>
+
+            <!-- Projects Section -->
+            <div class="section">
+                <h3>🚀 Projects</h3>
+                <div id="projectsContainer">
+                    <div class="project-item">
+                        <label>Project Title:</label>
+                        <input type="text" name="projectTitle[]" placeholder="e.g., E-Commerce Platform">
+                        
+                        <label>Description:</label>
+                        <textarea name="projectDesc[]" placeholder="Brief description of the project"></textarea>
+                        
+                        <label>Technologies (comma-separated):</label>
+                        <input type="text" name="projectTech[]" placeholder="React, Node.js, MongoDB">
+                        
+                        <label>GitHub URL:</label>
+                        <input type="url" name="projectGithub[]" placeholder="https://github.com/user/project">
+                        
+                        <label>Live Demo URL:</label>
+                        <input type="url" name="projectDemo[]" placeholder="https://project-demo.com">
+                    </div>
+                </div>
+                <button type="button" onclick="addProject()">+ Add Project</button>
+            </div>
+
+            <button type="button" class="generate-btn" onclick="generateWebsiteCode()">
+                🚀 Generate Website Code
+            </button>
+        </form>
+
+        <div id="output" class="output hidden"></div>
+        <div id="instructions" class="hidden" style="margin-top: 20px; padding: 20px; background-color: #e3f2fd; border-radius: 5px;">
+            <h3>📝 Next Steps:</h3>
+            <ol>
+                <li>Copy the generated code above</li>
+                <li>Open your <code>index.html</code> file in VS Code</li>
+                <li>Replace the placeholder sections with the generated code</li>
+                <li>Save the file and refresh your website</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function addExperience() {
+            const container = document.getElementById('experienceContainer');
+            const newItem = document.createElement('div');
+            newItem.className = 'experience-item';
+            newItem.innerHTML = `
+                <label>Job Title:</label>
+                <input type="text" name="jobTitle[]" placeholder="e.g., Senior Software Engineer">
+                
+                <label>Company:</label>
+                <input type="text" name="company[]" placeholder="e.g., Tech Company Inc.">
+                
+                <label>Duration:</label>
+                <input type="text" name="duration[]" placeholder="e.g., 2023 - Present">
+                
+                <label>Key Achievements (one per line):</label>
+                <textarea name="achievements[]" placeholder="• Achievement 1&#10;• Achievement 2&#10;• Achievement 3"></textarea>
+                
+                <button type="button" onclick="this.parentElement.remove()" style="background-color: #ef4444;">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addEducation() {
+            const container = document.getElementById('educationContainer');
+            const newItem = document.createElement('div');
+            newItem.className = 'education-item';
+            newItem.innerHTML = `
+                <label>Degree:</label>
+                <input type="text" name="degree[]" placeholder="e.g., Bachelor of Science in Computer Science">
+                
+                <label>Institution:</label>
+                <input type="text" name="institution[]" placeholder="e.g., University Name">
+                
+                <label>Year:</label>
+                <input type="text" name="year[]" placeholder="e.g., 2020">
+                
+                <label>Details:</label>
+                <textarea name="details[]" placeholder="Additional details, coursework, honors, etc."></textarea>
+                
+                <button type="button" onclick="this.parentElement.remove()" style="background-color: #ef4444;">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function addProject() {
+            const container = document.getElementById('projectsContainer');
+            const newItem = document.createElement('div');
+            newItem.className = 'project-item';
+            newItem.innerHTML = `
+                <label>Project Title:</label>
+                <input type="text" name="projectTitle[]" placeholder="e.g., E-Commerce Platform">
+                
+                <label>Description:</label>
+                <textarea name="projectDesc[]" placeholder="Brief description of the project"></textarea>
+                
+                <label>Technologies (comma-separated):</label>
+                <input type="text" name="projectTech[]" placeholder="React, Node.js, MongoDB">
+                
+                <label>GitHub URL:</label>
+                <input type="url" name="projectGithub[]" placeholder="https://github.com/user/project">
+                
+                <label>Live Demo URL:</label>
+                <input type="url" name="projectDemo[]" placeholder="https://project-demo.com">
+                
+                <button type="button" onclick="this.parentElement.remove()" style="background-color: #ef4444;">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+
+        function generateWebsiteCode() {
+            const form = document.getElementById('resumeForm');
+            const formData = new FormData(form);
+            
+            // Get personal info
+            const personalInfo = {
+                name: document.getElementById('fullName').value,
+                title: document.getElementById('title').value,
+                summary: document.getElementById('summary').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                location: document.getElementById('location').value,
+                linkedin: document.getElementById('linkedin').value,
+                github: document.getElementById('github').value
+            };
+
+            // Get skills
+            const skills = {
+                programming: document.getElementById('programmingLangs').value.split(',').map(s => s.trim()).filter(s => s),
+                frameworks: document.getElementById('frameworks').value.split(',').map(s => s.trim()).filter(s => s),
+                tools: document.getElementById('tools').value.split(',').map(s => s.trim()).filter(s => s),
+                other: document.getElementById('other').value.split(',').map(s => s.trim()).filter(s => s)
+            };
+
+            // Generate HTML code
+            let htmlCode = generateHTMLCode(personalInfo, skills, formData);
+            
+            document.getElementById('output').textContent = htmlCode;
+            document.getElementById('output').classList.remove('hidden');
+            document.getElementById('instructions').classList.remove('hidden');
+            
+            // Scroll to output
+            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateHTMLCode(personalInfo, skills, formData) {
+            let code = `<!-- Generated HTML code for your resume website -->\n\n`;
+            
+            // Personal info section
+            code += `<!-- UPDATE PERSONAL INFORMATION -->\n`;
+            code += `<h1 class="name">${personalInfo.name}</h1>\n`;
+            code += `<h2 class="title">${personalInfo.title}</h2>\n`;
+            code += `<p class="summary">${personalInfo.summary}</p>\n\n`;
+            
+            // Contact info
+            code += `<!-- UPDATE CONTACT INFORMATION -->\n`;
+            code += `<span>${personalInfo.email}</span>\n`;
+            code += `<span>${personalInfo.phone}</span>\n`;
+            code += `<span>${personalInfo.location}</span>\n`;
+            code += `<a href="${personalInfo.linkedin}" target="_blank">LinkedIn Profile</a>\n`;
+            code += `<a href="${personalInfo.github}" target="_blank">GitHub Profile</a>\n\n`;
+            
+            // Experience section
+            const jobTitles = formData.getAll('jobTitle[]');
+            const companies = formData.getAll('company[]');
+            const durations = formData.getAll('duration[]');
+            const achievements = formData.getAll('achievements[]');
+            
+            code += `<!-- EXPERIENCE SECTION -->\n`;
+            for (let i = 0; i < jobTitles.length; i++) {
+                if (jobTitles[i]) {
+                    code += `<div class="timeline-item">\n`;
+                    code += `    <div class="timeline-date">${durations[i] || ''}</div>\n`;
+                    code += `    <div class="timeline-content">\n`;
+                    code += `        <h4 class="job-title">${jobTitles[i]}</h4>\n`;
+                    code += `        <h5 class="company">${companies[i] || ''}</h5>\n`;
+                    code += `        <ul class="achievements">\n`;
+                    
+                    if (achievements[i]) {
+                        const achievementList = achievements[i].split('\n').filter(a => a.trim());
+                        achievementList.forEach(achievement => {
+                            code += `            <li>${achievement.replace(/^[•\-\*]\s*/, '')}</li>\n`;
+                        });
+                    }
+                    
+                    code += `        </ul>\n`;
+                    code += `    </div>\n`;
+                    code += `</div>\n\n`;
+                }
+            }
+            
+            // Skills section
+            code += `<!-- SKILLS SECTION -->\n`;
+            if (skills.programming.length > 0) {
+                code += `<div class="skill-category">\n    <h4>Programming Languages</h4>\n    <div class="skill-tags">\n`;
+                skills.programming.forEach(skill => {
+                    code += `        <span class="skill-tag">${skill}</span>\n`;
+                });
+                code += `    </div>\n</div>\n\n`;
+            }
+            
+            if (skills.frameworks.length > 0) {
+                code += `<div class="skill-category">\n    <h4>Frameworks & Libraries</h4>\n    <div class="skill-tags">\n`;
+                skills.frameworks.forEach(skill => {
+                    code += `        <span class="skill-tag">${skill}</span>\n`;
+                });
+                code += `    </div>\n</div>\n\n`;
+            }
+            
+            return code;
+        }
+    </script>
+</body>
+</html>
